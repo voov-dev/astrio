@@ -76,6 +76,28 @@ function compileScss() {
   .pipe(browserSync.stream());
 }
 
+function buildScss() {
+  return src(`src/scss/style.scss`)
+  .pipe(plumber())
+  .pipe(debug({
+    title: `Compiles:`
+  }))
+  .pipe(sass({
+    includePaths: [__dirname + `/`, `node_modules`]
+  }))
+  .pipe(postcss([
+    autoprefixer({
+      grid: true
+    }),
+    mqpacker({
+      sort: true
+    }),
+    atImport(),
+    objectFitImages(),
+  ]))
+  .pipe(dest(`build/css`));
+}
+
 function compileNjk() {
   return src([`src/pages/**/*.+(html|njk|nunjucks)`, `!src/pages/**/_*.+(html|njk|nunjucks)`])
   .pipe(plumber())
@@ -105,5 +127,5 @@ function buildJs() {
   .pipe(dest(`build/js`));
 }
 
-exports.build = series(clearBuildDir, copyOtherDir, compileNjk, compileScss, buildJs);
+exports.build = series(clearBuildDir, copyOtherDir, compileNjk, buildScss, buildJs);
 exports.default = series(clearBuildDir, copyOtherDir, compileNjk, compileScss, buildJs, serve);
