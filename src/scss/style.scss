@@ -63,12 +63,18 @@ body {
 
   width: 100%;
   height: 100%;
+
+  transition: transform 0.35s linear;
 }
 
 .banner__slide {
   display: flex;
   flex: 0 0 100%;
   max-width: 100%;
+}
+
+.banner__slide--active {
+
 }
 
 .banner__button {
@@ -85,16 +91,30 @@ body {
   padding: 0;
 
   background-color: #3a3a3a;
+  background-repeat: no-repeat;
+  background-position: center;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .banner__button--prev {
   left: 0;
+
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAWBAMAAAAC47AUAAAAHlBMVEUAAAD///////////////////3///3///7///7///4pGaKkAAAACXRSTlMAHTY3aoCH8POsv47vAAAARElEQVQI12NgAAEBMMnAWgShI6crgLkzZ4IFImfOLIZwpxtgcjMhXDYo13PmzGYGJBomDlMH1wczB6tAEbI74O4CuhMAz/kih9a4rb8AAAAASUVORK5CYII=");
 }
 
 .banner__button--next {
   right: 0;
+
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAWBAMAAAAC47AUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAeUExURQAAAP///////////////////f///f///v///v///ikZoqQAAAAJdFJOUwAdNjdqgIfw86y/ju8AAAAJcEhZcwAADsMAAA7DAcdvqGQAAABESURBVBjTY2BgZIAA9QAwxVQ5FcKdORMsYD5zJliAuRKPwDSYQAKIYTFz5hQkGiYOVQfTBzUHjQu3F+YOmLvA7mRgAADUzSJpoy20UQAAAABJRU5ErkJggg==");
+}
+
+.banner__button--disabled {
+  opacity: 0.3;
+  outline: none;
+  pointer-events: none;
+  cursor: auto;
 }
 
 .catalog {
